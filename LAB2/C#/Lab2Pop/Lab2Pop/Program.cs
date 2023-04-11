@@ -8,7 +8,7 @@ namespace Lab2Pop
         static void Main(string[] args)
         {
             int dim = 1_000_000_000;
-            int countOfThreads = 2;
+            int countOfThreads = 5;
             int[] arr = new int[dim];
 
             for (int i = 0; i < dim; i++)
@@ -23,9 +23,9 @@ namespace Lab2Pop
             int commonMinIndex = arrClass.FindMin(0, arr.Length);
             int parallelMinIndex = arrClass.ParallelFindMin();
 
-            Console.WriteLine("Common");
-            Console.WriteLine(commonMinIndex + " " + arr[commonMinIndex]);
-            Thread.Sleep(1000);
+            //Console.WriteLine("Common");
+            //Console.WriteLine(commonMinIndex + " " + arr[commonMinIndex]);
+            //Thread.Sleep(1000);
             Console.WriteLine("Parallel");
             Console.WriteLine(parallelMinIndex + " " + arr[parallelMinIndex]);
         }
