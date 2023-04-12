@@ -22,7 +22,7 @@ namespace Lab4Pop
             {
                 if (i == count_of_phylosophers-1)
                 {
-                    Phylosopher phylosopher = new Phylosopher(i, 
+                    Philosopher phylosopher = new Philosopher(i, 
                                                               forks[i % (count_of_phylosophers-1)], 
                                                               forks[i],
                                                               count_of_loops, 
@@ -32,7 +32,7 @@ namespace Lab4Pop
                 }
                 else
                 {
-                    Phylosopher phylosopher = new Phylosopher(i,
+                    Philosopher phylosopher = new Philosopher(i,
                                                               forks[i],
                                                               forks[i+1],
                                                               count_of_loops,
