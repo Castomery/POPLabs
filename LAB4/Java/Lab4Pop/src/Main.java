@@ -9,7 +9,7 @@ public class Main {
             forks[i] = new Semaphore(1);
         }
 
-        int count_of_loops = 1;
+        int count_of_loops = 3;
         int thinkingTime = 1000;
         int eatingTime = 1000;
 

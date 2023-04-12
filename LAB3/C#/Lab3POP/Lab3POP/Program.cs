@@ -7,10 +7,10 @@ namespace Lab3POP
     {
         static void Main(string[] args)
         {
-            int size = 2;
-            int itemCount = 10;
-            int countOfConsumers = 3;
-            int countOfProducers = 4;
+            int size = 5;
+            int itemCount = 20;
+            int countOfConsumers = 4;
+            int countOfProducers = 2;
             Storage storage = new Storage(size);
 
             int itemAmountToTake = itemCount;

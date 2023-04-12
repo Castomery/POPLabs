@@ -8,8 +8,8 @@ procedure Main is
    package String_List is new Indefinite_Doubly_Linked_Lists(String);
    use String_List;
 
-   Storage_Size : Integer := 2;
-   Item_Count: Integer := 10;
+   Storage_Size : Integer := 5;
+   Item_Count: Integer := 20;
 
    Storage : List;
    Access_Storage : Counting_Semaphore(1,Default_Ceiling);
@@ -70,8 +70,8 @@ procedure Main is
       end loop;
    end Consumer;
 
-   count_Of_Consumers: Integer := 3;
-   count_Of_Producers: Integer := 4;
+   count_Of_Consumers: Integer := 4;
+   count_Of_Producers: Integer := 2;
    producers : array(1..count_Of_Producers) of Producer;
    consumers : array(1..count_Of_Consumers) of Consumer;
 
@@ -83,7 +83,6 @@ procedure Main is
    amount_To_Take: Integer;
 
 begin
-   Put_Line(item_For_One_Consumer'Img);
    for I in producers'Range loop
       if(I = (count_Of_Producers)) then
          amount_To_Add:= item_To_Put;

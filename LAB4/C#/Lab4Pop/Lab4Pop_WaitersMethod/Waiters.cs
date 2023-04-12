@@ -21,15 +21,14 @@ namespace Lab4Pop_WaitersMethod
         }
 
         public bool CallWaiter(int philosopherId)
-        {
-            _waiters.WaitOne();
+        {         
             if (_canServe[(_countOfPhilosophers + philosopherId - 1) % _countOfPhilosophers] &&
                 _canServe[(_countOfPhilosophers + philosopherId + 1) % _countOfPhilosophers])
             {
+                _waiters.WaitOne();
                 _canServe[philosopherId] = false;
                 return true;
             }
-            _waiters.Release();
             return false;
         }
 
