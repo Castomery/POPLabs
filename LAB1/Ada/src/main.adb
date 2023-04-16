@@ -47,8 +47,8 @@ procedure Main is
       can_stop(id) := True;
    end thread_breaker;
 
-   durations: array (1 .. threads_counts) of Duration := (2.0, 5.0, 10.0);
-   steps: array (1..threads_counts) of Long_Long_Integer := (4, 1, 5);
+   durations: array (1 .. threads_counts) of Duration := (2.0,5.0, 10.0);
+   steps: array (1..threads_counts) of Long_Long_Integer := (4,1,5);
    calculators: array (1..threads_counts) of calculator;
    thread_breakers: array (1..threads_counts) of thread_breaker;
 

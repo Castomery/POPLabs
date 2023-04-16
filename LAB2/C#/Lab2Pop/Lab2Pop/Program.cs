@@ -7,8 +7,8 @@ namespace Lab2Pop
     {
         static void Main(string[] args)
         {
-            int dim = 1_000_000_000;
-            int countOfThreads = 5;
+            int dim = 1_000_000;
+            int countOfThreads = 3;
             int[] arr = new int[dim];
 
             for (int i = 0; i < dim; i++)

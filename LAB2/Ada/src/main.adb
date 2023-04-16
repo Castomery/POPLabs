@@ -87,24 +87,24 @@ procedure Main is
    function parallel_min return Long_Long_Integer is
       min_index: Long_Long_Integer := 0;
       len: Long_Long_Integer := dim/thread_num;
-      s_index: Long_Long_Integer;
-      e_index: Long_Long_Integer;
+      start_index: Long_Long_Integer;
+      end_index: Long_Long_Integer;
       thread : array(1..thread_num) of starter_thread;
    begin
 
       for i in 1..thread_num loop
          if(i = 1) then
-            s_index := len * (i-1)+1;
+            start_index := 1;
          else
-            s_index := len * (i-1);
+            start_index := len * (i-1);
          end if;
 
          if(i = (thread_num-1)) then
-            e_index := dim;
+            end_index := dim;
          else
-            e_index := len * (i);
+            end_index := len * (i);
          end if;
-         thread(i).start(s_index,e_index);
+         thread(i).start(start_index,end_index);
       end loop;
       part_manager.get_min(min_index);
       return min_index;
