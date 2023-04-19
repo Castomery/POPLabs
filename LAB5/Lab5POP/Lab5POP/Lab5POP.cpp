@@ -88,12 +88,16 @@ int part_min_sum(int num_threads) {
 		{
 			row_sum += arr[i][j];
 		}
-
-		#pragma omp critical
 		if (min_row_sum > row_sum)
 		{
-			min_row_sum = row_sum;
-			index = i;
+
+
+#pragma omp critical
+			if (min_row_sum > row_sum)
+			{
+				min_row_sum = row_sum;
+				index = i;
+			}
 		}
 
 	}
