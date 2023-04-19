@@ -12,16 +12,16 @@ public class Consumer implements Runnable{
         for (int i = 0; i < _maxItem; i++) {
             String item;
             try {
-                _storage.empty.acquire();
+                _storage.acquireEmpty();
                 Thread.sleep(1000);
-                _storage.access.acquire();
+                _storage.acquireAccess();
 
                 item = _storage.getItem();
                 _storage.removeItem();
                 System.out.println("Took " + item);
 
-                _storage.access.release();
-                _storage.full.release();
+                _storage.releaseAccess();
+                _storage.releaseFull();
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

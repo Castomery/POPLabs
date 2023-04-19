@@ -4,9 +4,9 @@ import java.util.concurrent.Semaphore;
 
 public class Storage {
 
-    public Semaphore access;
-    public Semaphore full;
-    public Semaphore empty;
+    private Semaphore access;
+    private Semaphore full;
+    private Semaphore empty;
 
     private ArrayList<String> _storage = new ArrayList<>();
 
@@ -29,5 +29,32 @@ public class Storage {
     public void removeItem()
     {
         _storage.remove(0);
+    }
+
+    public void acquireAccess() throws InterruptedException {
+        access.acquire();
+    }
+
+    public void releaseAccess()
+    {
+        access.release();
+    }
+
+    public void acquireEmpty() throws InterruptedException {
+        empty.acquire();
+    }
+
+    public void releaseEmpty()
+    {
+        empty.release();
+    }
+
+    public void acquireFull() throws InterruptedException {
+        full.acquire();
+    }
+
+    public void releaseFull()
+    {
+        full.release();
     }
 }

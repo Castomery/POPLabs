@@ -11,14 +11,14 @@ public class Producer implements Runnable{
     public void run() {
         for(int i = 0; i< _maxItem; i++){
             try{
-                _storage.full.acquire();
-                _storage.access.acquire();
+                _storage.acquireFull();
+                _storage.acquireAccess();
 
                 _storage.addItem("item " + i);
                 System.out.println("Added item " + i);
 
-                _storage.access.release();
-                _storage.empty.release();
+                _storage.releaseAccess();
+                _storage.releaseEmpty();
             }catch (InterruptedException e){
                 e.printStackTrace();
             }
