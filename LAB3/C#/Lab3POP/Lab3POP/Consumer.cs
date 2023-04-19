@@ -22,16 +22,16 @@ namespace Lab3POP
         {
             for (int i = 0; i < _maxItem; i++)
             {
-                _storage.empty.WaitOne();
+                _storage.AcquireEmpty();
                 Thread.Sleep(1000);
-                _storage.access.WaitOne();
+                _storage.AcquireAccess();
 
                 string item = _storage.GetItem();
                 _storage.RemoveItem();
 
-                _storage.full.Release();
+                _storage.ReleaseFull();
 
-                _storage.access.Release();
+                _storage.ReleaseAccess();
 
                 Console.WriteLine("Took " + item);
             }

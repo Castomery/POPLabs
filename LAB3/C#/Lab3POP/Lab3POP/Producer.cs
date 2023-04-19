@@ -21,14 +21,14 @@ namespace Lab3POP
         {
             for (int i = 0; i < _maxItem; i++)
             {
-                _storage.full.WaitOne();
-                _storage.access.WaitOne();
+                _storage.AcquireFull();
+                _storage.AcquireAccess();
 
                 _storage.AddItem("item " + i);
                 Console.WriteLine("Added item " + i);
 
-                _storage.access.Release();
-                _storage.empty.Release();
+                _storage.ReleaseAccess();
+                _storage.ReleaseEmpty();
 
             }
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Lab3POP
 {
@@ -14,12 +15,14 @@ namespace Lab3POP
         public Semaphore empty;
 
         private List<string> _storage = new List<string>();
+        private int _storageSize;
 
         public Storage(int storageSize)
         {
             access = new Semaphore(1, 1);
             full = new Semaphore(storageSize, storageSize);
-            empty = new Semaphore(0,storageSize);
+            empty = new Semaphore(0, storageSize);
+            _storageSize = storageSize;
         }
 
         public string GetItem()
@@ -35,6 +38,38 @@ namespace Lab3POP
         public void RemoveItem()
         {
             _storage.RemoveAt(0);
+        }
+
+        public void AcquireAccess()
+        {
+            access.WaitOne();
+        }
+
+        public void ReleaseAccess()
+        {
+            access.Release();
+        }
+
+        public void AcquireEmpty()
+        {
+            empty.WaitOne();
+
+        }
+
+        public void ReleaseEmpty()
+        {
+            empty.Release();
+        }
+
+        public void AcquireFull()
+        {
+            full.WaitOne();
+
+        }
+
+        public void ReleaseFull()
+        {
+            full.Release();
         }
     }
 }
