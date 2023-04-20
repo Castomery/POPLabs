@@ -14,6 +14,8 @@ long long part_sum(int);
 int part_min_sum(int);
 
 int main() {
+	
+	int count_of_threads = 4;
 
 	init_arr();
 
@@ -24,18 +26,12 @@ int main() {
 	{
 		#pragma omp section
 		{
-			printf("min1 = %lld, index1 = %d \n", min_row_sum, part_min_sum(1));
-			printf("min2 = %lld, index1 = %d \n", min_row_sum, part_min_sum(2));
-			printf("min3 = %lld, index1 = %d \n", min_row_sum, part_min_sum(3));
-			printf("min4 = %lld, index1 = %d \n", min_row_sum, part_min_sum(4));
+			printf("min1 = %lld, index1 = %d \n", min_row_sum, part_min_sum(count_of_treads));
 		}
 
 		#pragma omp section
 		{
-			printf("sum1 = %lld \n", part_sum(1));
-			printf("sum2 = %lld \n", part_sum(2));
-			printf("sum3 = %lld \n", part_sum(3));
-			printf("sum4 = %lld \n", part_sum(4));
+			printf("sum1 = %lld \n", part_sum(count_of_threads));
 		}
 	}
 	double t2 = omp_get_wtime();
