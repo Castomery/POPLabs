@@ -6,6 +6,7 @@ using namespace std;
 const int rows = 2000;
 const int cols = 2000;
 long long min_row_sum = LLONG_MAX;
+const int count_of_threads = 4;
 
 int arr[rows][cols];
 
@@ -15,8 +16,6 @@ int part_min_sum(int);
 
 int main() {
 	
-	int count_of_threads = 4;
-
 	init_arr();
 
 	omp_set_nested(1);
@@ -26,7 +25,7 @@ int main() {
 	{
 		#pragma omp section
 		{
-			printf("min1 = %lld, index1 = %d \n", min_row_sum, part_min_sum(count_of_treads));
+			printf("min1 = %lld, index1 = %d \n", min_row_sum, part_min_sum(count_of_threads));
 		}
 
 		#pragma omp section
