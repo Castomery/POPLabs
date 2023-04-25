@@ -7,15 +7,10 @@ public class ArrClass {
     private int _threadCount = 0;
     private int _minIndex = 0;
 
-    public ArrClass(int dim, int threadNum) {
+    public ArrClass(int dim, int threadNum, int[] arr) {
         _dim = dim;
-        _arr = new int[dim];
         _threadNum = threadNum;
-        for(int i = 0; i < dim; i++){
-            _arr[i] = i;
-        }
-        Random random = new Random();
-        _arr[random.nextInt(dim)] *= -1;
+        _arr = arr;
     }
 
     public int findMinIndex(int startIndex, int finishIndex){
@@ -31,16 +26,7 @@ public class ArrClass {
         return index;
     }
 
-    public void CommonFindMin(){
-        _minIndex = findMinIndex(0,_arr.length);
-        printMin();
-    }
-
-    private void printMin(){
-        System.out.println(_minIndex + " " + _arr[_minIndex]);
-    }
-
-    synchronized private void getMin() {
+    synchronized private int getMinIndex() {
         while (getThreadCount()< _threadNum){
             try {
                 wait();
@@ -48,7 +34,7 @@ public class ArrClass {
                 e.printStackTrace();
             }
         }
-        printMin();
+        return _minIndex;
     }
 
     synchronized public void SetMinIndex(int minIndex){
@@ -67,7 +53,7 @@ public class ArrClass {
         return _threadCount;
     }
 
-    public void parallelFindMin(){
+    public int parallelFindMin(){
         ThreadMin[] threadMins = new ThreadMin[_threadNum];
         int len = _arr.length / _threadNum;
 
@@ -78,6 +64,6 @@ public class ArrClass {
             threadMins[i] = new ThreadMin(startIndex,endIndex, this);
             threadMins[i].start();
         }
-        getMin();
+        return getMinIndex();
     }
 }
