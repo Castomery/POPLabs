@@ -12,7 +12,7 @@ public class Main {
         Random random = new Random();
         arr[random.nextInt(dim)] *= -1;
 
-        ArrClass arrClass = new ArrClass(dim, threadNum, arr);
+        ArrClass arrClass = new ArrClass(threadNum, arr);
 
         System.out.println("Common");
         int result = arrClass.findMinIndex(0,dim);
