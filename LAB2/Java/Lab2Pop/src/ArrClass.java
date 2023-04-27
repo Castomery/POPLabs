@@ -1,14 +1,12 @@
 import java.util.Random;
 
 public class ArrClass {
-    private final int _dim;
     private final int _threadNum;
     public final int[] _arr;
     private int _threadCount = 0;
     private int _minIndex = 0;
 
-    public ArrClass(int dim, int threadNum, int[] arr) {
-        _dim = dim;
+    public ArrClass(int threadNum, int[] arr) {
         _threadNum = threadNum;
         _arr = arr;
     }
